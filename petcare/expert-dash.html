@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rescue Expert Dashboard</title>
+    <form action="expert-dash.php" method="post">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .dashboard-container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        h2 {
+            color: #009688;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="url"] {
+            padding: 8px;
+        }
+
+        input[type="submit"] {
+            background-color: #009688;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #007567;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Welcome, Rescue Expert!</h1>
+
+        <!-- Breed Profiles -->
+        <div class="section">
+            <h2>Breed Profiles</h2>
+            <form action="add_breed_profile.php" method="post">
+                <label for="breed_name">Breed Name:</label>
+                <input type="text" name="breed_name" required>
+
+                <label for="origin">Origin:</label>
+                <input type="text" name="origin" required>
+
+                <label for="dog_picture_url">Dog Picture URL:</label>
+                <input type="url" name="dog_picture_url" placeholder="Enter the URL" required>
+
+                <input type="submit" value="Add Breed Profile">
+            </form>
+        </div>
+
+        <!-- Adoption and Rescue Stories -->
+        <div class="section">
+            <h2>Adoption and Rescue Stories</h2>
+            <form action="add_rescue_story.php" method="post" enctype="multipart/form-data">
+                <label for="story_title">Story Title:</label>
+                <input type="text" name="story_title" required>
+        
+                <label for="story_picture_path">Story Picture Path:</label>
+                <input type="file" name="story_picture_path" required>
+        
+                <label for="story_id">Story ID:</label>
+                <input type="text" name="story_id" required>
+        
+                <textarea name="story_content" placeholder="Write your rescue story..." required></textarea>
+        
+                <input type="submit" value="Upload Rescue Story">
+            </form>
+        </div>
+        
+
+        <!-- Dog Profiles for Adoption -->
+        <div class="section">
+            <h2>Dog Profiles for Adoption</h2>
+            <!-- Display the list of dog profiles from the database -->
+            <?php include 'display_dog_profiles.php'; ?>
+        </div>
+    </div>
+</body>
+</html>
